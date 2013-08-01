@@ -171,7 +171,7 @@ class EConomicsService(object):
             getattr(array, '%sData' % model.__name__).extend(datalist)
 
             self.fetch("%s_UpdateFromDataArray" % model.__name__, array)
-            [change.clear() for change in changes]
+            [change.apply_and_clear() for change in changes]
 
     def __getattr__(self, name):
         return getattr(self.service, name)
@@ -185,7 +185,8 @@ class ModelChange(object):
     def __repr__(self):
         return "<Changes %r %r>" % (self.instance, self.clean_data(self.instance._changes))
 
-    def clear(self):
+    def apply_and_clear(self):
+        self.instance._data.update(self.instance._changes)
         self.instance._changes = {}
 
     def clean_data(self, data):

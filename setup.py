@@ -1,18 +1,21 @@
 #!/usr/bin/env python
 
+import os
+
 from distutils.core import setup
 
-with open('README.md') as f:
-    docs = f.read()
+docs = ''
+if os.path.exists('README.md'):
+    with open('README.md') as f:
+        docs = f.read()
 
 setup(
     name='pyconomic',
-    version='0.1.0',
+    version='0.1.1',
     description='Abstraction for e-conomic.com API',
     author='Mikkel Jans',
     author_email='mikkeljans@gmail.com',
-    url='',
+    url='https://github.com/mikkeljans/pyconomic',
     packages=['pyconomic'],
-    install_requires=["suds"],
     long_description=docs
 )

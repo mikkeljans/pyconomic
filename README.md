@@ -1,8 +1,12 @@
-pyconomics is a python client/abstraction for the e-conomic API (e-conomic.dk)
+pyconomics is a python client/abstraction for the e-conomic API (e-conomic.com)
 
 
 Installation
 ------------
+
+Install SUDS:
+ pip install suds
+
 
 pip install pyconomic
 
@@ -10,7 +14,7 @@ pip install pyconomic
 Basic Usage
 -----------
 
-
+    # startup
     >>> import pyconomic
     >>> from pyconomic import models
     >>> pycon = pyconomic.Pyconomic(agreement_nr, user_id, password)
@@ -64,8 +68,8 @@ Basic Usage
     >>> pycon.commit()
     >>> pycon.get_all_changes()[models.OrderLine]
     []
-    >>> orderline.fetch().quantity
-    3.0
+    >>> orderline.quantity
+    3
 
     # upgrade order to invoice (must not be sent)
     >>> pycon.upgrade_to_invoice(order1)
